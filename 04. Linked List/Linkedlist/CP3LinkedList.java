@@ -1,4 +1,4 @@
-import org.w3c.dom.Node;
+package Linkedlist;
 
 import java.util.NoSuchElementException;
 //singly linked list with first reference only 

@@ -52,12 +52,7 @@ public class CP3LinkedList<E> {
 	}
 
 	public void print(){
-           //outputs the data on the list
-		Node current = first;
-		while (current != null){
-			System.out.println(current.data);
-			current = current.next;
-		}
+		printSub(first);
 	}
 
 	// Added code by Anna
@@ -70,5 +65,13 @@ public class CP3LinkedList<E> {
 		} else {
 			return 1 + size(node.next);
 		}
+	}
+
+	private void printSub(Node head) {
+		if (head == null) {
+			return;
+		}
+		System.out.println(head.data);
+		printSub(head.next);
 	}
 }

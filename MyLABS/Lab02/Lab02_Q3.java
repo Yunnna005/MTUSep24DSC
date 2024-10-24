@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Lab02_Q3 {
     public static void main(String[] args) {
-        String file_name = "C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\MyLABS\\Lab02\\hamlet.txt";
+        String file_name = "C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\MyLABS\\Lab02\\Doc\\hamlet.txt";
         try {
             Scanner sc = new Scanner(new File(file_name));
             int lineNum = 1;

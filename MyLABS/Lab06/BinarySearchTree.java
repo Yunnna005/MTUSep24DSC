@@ -1,4 +1,4 @@
-package Lab6;
+package Lab06;
 
 import java.util.LinkedList;
 import java.util.Queue;

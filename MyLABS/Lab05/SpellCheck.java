@@ -22,9 +22,9 @@ public class SpellCheck {
            throws FileNotFoundException {
       // Read the dictionary and the document
 
-      HashSet<String> dictionaryWords = readDictionary("C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\MyLABS\\Lab05\\Doc\\words");
+      ArrayDeque<String> dictionaryWords = readDictionary("C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\CA\\CA1\\randomWords.txt");
       //Set<String> documentWords = readWords("alice30.txt");
-      Set<String> documentWords = readWords("C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\MyLABS\\Lab05\\Doc\\war-and-peace.txt"); // file to be spell-checked
+      Set<String> documentWords = readWords("C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\CA\\CA1\\Robinson.txt"); // file to be spell-checked
 
       // Print all words that are in the document but not the dictionary
       int numberMisspeltWords = 0;
@@ -37,9 +37,9 @@ public class SpellCheck {
       System.out.println("Number of misspelt words: " + numberMisspeltWords);
    }
 
-   private static HashSet<String> readDictionary(String filename)
+   public static ArrayDeque<String> readDictionary(String filename)
            throws FileNotFoundException {
-      HashSet<String> words = new HashSet<>();
+      ArrayDeque<String> words = new ArrayDeque<>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
       in.useDelimiter("[^a-zA-Z]+");

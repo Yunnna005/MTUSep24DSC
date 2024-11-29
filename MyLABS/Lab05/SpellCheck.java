@@ -9,6 +9,8 @@ package Lab05; /*****************************************************
  *       Collection used instead of Set for dictionaryWords to allow us experiment with different collections.
   *****************************************************/
 
+import com.sun.source.tree.Tree;
+
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,24 +24,24 @@ public class SpellCheck {
            throws FileNotFoundException {
       // Read the dictionary and the document
 
-      ArrayDeque<String> dictionaryWords = readDictionary("C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\CA\\CA1\\randomWords.txt");
+      ArrayList<String> dictionaryWords = readDictionary("C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\CA\\CA1\\randomWords.txt");
       //Set<String> documentWords = readWords("alice30.txt");
       Set<String> documentWords = readWords("C:\\Users\\Anna\\IdeaProjects\\MTUSep24DSC\\CA\\CA1\\Robinson.txt"); // file to be spell-checked
 
+      Collections.sort(dictionaryWords);
       // Print all words that are in the document but not the dictionary
       int numberMisspeltWords = 0;
       for (String word : documentWords) {
-         if (!dictionaryWords.contains(word)) {
+         if (Collections.binarySearch(dictionaryWords, word) < 0) {
             numberMisspeltWords++;
-            //System.out.println(word);
          }
       }
       System.out.println("Number of misspelt words: " + numberMisspeltWords);
    }
 
-   public static ArrayDeque<String> readDictionary(String filename)
+   public static ArrayList<String> readDictionary(String filename)
            throws FileNotFoundException {
-      ArrayDeque<String> words = new ArrayDeque<>();
+      ArrayList<String> words = new ArrayList<>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
       in.useDelimiter("[^a-zA-Z]+");

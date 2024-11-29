@@ -13,4 +13,7 @@ public interface Graph {
     void addEdge(int s, int d);
     
     void removeEdge(int s, int d);
+
+    void bfs(int startVertex);
+
 }

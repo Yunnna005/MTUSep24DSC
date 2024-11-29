@@ -3,6 +3,7 @@ package Lab07;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class ListGraph extends AbstractGraph {
     private List<LinkedList<Integer>> adjacencyLists;
@@ -47,6 +48,33 @@ public class ListGraph extends AbstractGraph {
         adjacencyLists.get(s).remove((Integer) d);
         if (!isDirected()) {
             adjacencyLists.get(d).remove((Integer) s);
+        }
+    }
+
+    @Override
+    public void bfs(int startVertex) {
+        if (startVertex < 0 || startVertex >= getNumVertices()) {
+            throw new IllegalArgumentException("Invalid start vertex");
+        }
+
+        int[] state = new int[getNumVertices()];
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.offer(startVertex);
+        state[startVertex] = 1;
+
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            System.out.println("Visited vertex: " + currentVertex);
+            state[currentVertex] = 2;
+
+            for (int neighbor : adjacencyLists.get(currentVertex)) {
+                if (state[neighbor] == 0) {
+                    queue.offer(neighbor);
+                    state[neighbor] = 1;
+                }
+            }
         }
     }
 }

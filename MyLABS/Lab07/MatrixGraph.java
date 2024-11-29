@@ -1,5 +1,8 @@
 package Lab07;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MatrixGraph extends AbstractGraph {
     //entries in matrix are 1.0 or 0.0
     //1.0 indicates an edge.
@@ -47,6 +50,33 @@ public class MatrixGraph extends AbstractGraph {
         matrix[s][d] = 0.0;
         if (!isDirected()) {
             matrix[d][s] = 0.0;
+        }
+    }
+
+    @Override
+    public void bfs(int startVertex) {
+        if (startVertex < 0 || startVertex >= getNumVertices()) {
+            throw new IllegalArgumentException("Invalid start vertex");
+        }
+
+        int[] state = new int[getNumVertices()];
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.offer(startVertex);
+        state[startVertex] = 1;
+
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            System.out.println("Visited vertex: " + currentVertex);
+            state[currentVertex] = 2;
+
+            for (int neighbor = 0; neighbor < getNumVertices(); neighbor++) {
+                if (matrix[currentVertex][neighbor] == 1.0 && state[neighbor] == 0) {
+                    queue.offer(neighbor);
+                    state[neighbor] = 1;
+                }
+            }
         }
     }
 }
